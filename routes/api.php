@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// работает по адресу /api/test
+Route::get('/test', function() { return "Hello World"; });
