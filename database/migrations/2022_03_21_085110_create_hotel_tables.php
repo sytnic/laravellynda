@@ -7,12 +7,14 @@ use Illuminate\Database\Migrations\Migration;
 class CreateHotelTables extends Migration
 {
     /**
+     * Создание пустых таблиц
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
+        
         Schema::create('room_types', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('The Primary Key for the table.');
             $table->string('name', 255)->comment('The name of the room type, ie Double Queen, etc.');
@@ -20,7 +22,7 @@ class CreateHotelTables extends Migration
             $table->timestamps();  // будущие столбцы created_at, updated_at
             $table->softDeletes(); // будущий столбец deleted_at
         });
-
+    
         Schema::create('rooms', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('The Primary Key for the table.');
             $table->integer('number')->unique('number')->comment('The room number in the hotel, a unique value.'); // уникальное число
@@ -73,6 +75,8 @@ class CreateHotelTables extends Migration
             $table->foreign('booking_id')->references('id')->on('bookings');
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+    
     }
 
     /**
@@ -82,11 +86,13 @@ class CreateHotelTables extends Migration
      */
     public function down()
     {
+        
         Schema::dropIfExists('bookings_users');
         Schema::dropIfExists('bookings');
         Schema::dropIfExists('rates');
         Schema::dropIfExists('discounts');
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('rooms');        
         Schema::dropIfExists('room_types');
+
     }
 }
