@@ -21,6 +21,12 @@ class ShowRoomsController extends Controller
 
         // вывод на экран всех комнат из БД в формате JSON
         $rooms = DB::table('rooms')->get();
+        //  если в запросе указан id (он не null)
+        if ($request->query('id') !== null) {
+            // то перезаписываем $rooms только теми, у которых room_type_id	== id из запроса
+            $rooms = $rooms->where('room_type_id', $request->query('id'));
+        }
+
         return response()->json($rooms);
     }
 }
