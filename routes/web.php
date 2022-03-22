@@ -21,3 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // работает по адресу /test
 Route::get('/test', function() {return "Goodbye";});
+
+Route::get('/rooms', 'ShowRoomsController');
+
