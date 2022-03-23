@@ -27,6 +27,13 @@ class ShowRoomsController extends Controller
             $rooms = $rooms->where('room_type_id', $request->query('id'));
         }
 
-        return response()->json($rooms);
+        // вывод на экран, минуя вью
+        //return response()->json($rooms);
+
+        // вывод на экран через вью
+        return view('rooms.index', ['rooms' => $rooms]);
+        // rooms.index  - вью
+        // 'rooms' -  будущая переменная во вью
+        // $rooms  -  локальная переменная здесь
     }
 }
