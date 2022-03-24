@@ -14,6 +14,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+      <!-- me added -->
+      <!-- works too: -->
+      <!-- <link href="{{ asset('css/back.css') }}" rel="stylesheet">  -->
+    <link href="/css/back.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
