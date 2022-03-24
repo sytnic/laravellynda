@@ -9,5 +9,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
+    // Трэйты обходят проблему множественного наследования в php:
+    // DispatchesJobs определяют очереди,
+    // AuthorizesRequests и ValidatesRequests проверяют запросы на авторизацию и фильтруют запросы
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

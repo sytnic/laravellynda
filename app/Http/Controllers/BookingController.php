@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
@@ -13,8 +14,16 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        \DB::table('bookings')->get()->dd();
+    {    
+        // 
+        // \DB::table('bookings')->get()->dd();
+
+        // получение всех записей из таблицы БД
+        $bookings = DB::table('bookings')->get();
+
+        // передача переменной во вью не в массиве, а с помощью with()
+        return view('bookings.index')
+            ->with('bookings', $bookings);
     }
 
     /**
