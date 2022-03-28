@@ -24,8 +24,11 @@ Route::get('/test', function() {return "Goodbye";});
 
 Route::get('/rooms', 'ShowRoomsController');
 
-/* Равнозначно - Route::resource('bookings', 'BookingController'):
-
+//Равнозначно - Route::resource('bookings', 'BookingController'),
+// но во избежание ошибок
+// дополнительно нужно указывать имена маршрутов типа ->name('bookings.create'),
+// если такой маршрут используется во вью.
+/*
 Route::get('/bookings', 'BookingController@index');
 Route::get('/bookings/create', 'BookingController@create');
 Route::post('/bookings', 'BookingController@store');
