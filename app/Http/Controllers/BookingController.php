@@ -49,7 +49,9 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Позволяет играть с отправкой POST
+        dd($request->all());
+
     }
 
     /**
