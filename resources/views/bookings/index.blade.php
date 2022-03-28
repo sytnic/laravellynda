@@ -24,6 +24,7 @@
         {{-- @forelse это цикл наподобие foreach, придуманный в Laravel;
              помогает легко отреагировать на пустой массив при помощи @empty в конце цикла
         --}}
+        {{-- $bookings - переданная переменная из BookingController@index --}}
         @forelse ($bookings as $booking)
             <tr>
                 <td>{{ $booking->id }}</td>
