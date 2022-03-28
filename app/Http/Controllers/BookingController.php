@@ -55,8 +55,9 @@ class BookingController extends Controller
         // Позволяет играть с отправкой POST
         // dd($request->all());
 
+        // Здесь ловятся значения из формы.
         // Вставка значений в таблицу bookings 
-        // и получение идентификатора        
+        // и получение идентификатора.       
         $id = DB::table('bookings')->insertGetId([
             'room_id' => $request->input('room_id'),
             'start' => $request->input('start'),
@@ -86,7 +87,12 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        // Понимание $booking,
+        // отображается на "/bookings/1"
+        // согласно маршруту bookings.show
+        dd($booking);
+
+
     }
 
     /**
