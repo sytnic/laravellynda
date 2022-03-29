@@ -90,14 +90,16 @@ class BookingController extends Controller
         // Понимание $booking,
         // отображается на "/bookings/1"
         // согласно маршруту bookings.show
-        //   dd($booking);
+        // dd($booking);
+        
 
         // Получение всех атрибутов в массиве из объекта $booking
         //   dd($booking->getAttributes());
         // Получение единичных данных из объекта $booking
         //   dd($booking->room_id, $booking->notes);
 
-
+        // По факту передали объект во вью,
+        // где можно обращаться к его свойствам
         return view('bookings.show', ['booking' => $booking]);
 
     }
