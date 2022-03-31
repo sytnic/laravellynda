@@ -36,9 +36,16 @@ class BookingController extends Controller
         $users = DB::table('users')->get()->pluck('name', 'id')->prepend('none');
         $rooms = DB::table('rooms')->get()->pluck('number', 'id');
 
+        // подправил временный баг с переходом на /bookings/create: 
+        // объект $booking вшит во вью fields.blade.php 
+        // и вью без $booking не работает
+        $booking = new Booking;
+
         return view('bookings.create')
             ->with('users', $users)
-            ->with('rooms', $rooms);
+            ->with('rooms', $rooms)
+            
+            ->with('booking', $booking);
     }
 
     /**
@@ -131,7 +138,29 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        //
+        DB::table('bookings')
+        ->where('id', $booking->id)
+        ->update([
+            'room_id' => $request->input('room_id'),
+            'start' => $request->input('start'),
+            'end' => $request->input('end'),
+            // значение по умолчанию false
+            'is_reservation' => $request->input('is_reservation', false),
+            // значение по умолчанию false
+            'is_paid' => $request->input('is_paid', false),
+            'notes' => $request->input('notes'),
+        ]);
+        // Вставка значений в таблицу bookings_users 
+        DB::table('bookings_users')
+        ->where('booking_id', $booking->id)        
+        ->update([
+            // booking_id при update не нужно обновлять
+            // 'booking_id' => $booking->id,
+            'user_id' => $request->input('user_id'),
+        ]);
+
+        // Редирект
+        return redirect()->action('BookingController@index');
     }
 
     /**
