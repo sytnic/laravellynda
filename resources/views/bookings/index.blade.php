@@ -49,6 +49,11 @@
                         title="Edit">
                       Edit
                     </a>
+                    <form action="{{ action('BookingController@destroy', ['booking' => $booking->id ]  ) }}" method="POST">
+                        @method('DELETE')
+                        @csrf 
+                        <button type="submit" class="btn btn-link" title="Delete" value="DELETE" >DELETE</button>
+                    </form>
                 </td>
             </tr>
         @empty
