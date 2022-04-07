@@ -19,7 +19,10 @@ class BookingController extends Controller
         // \DB::table('bookings')->get()->dd();
 
         // получение всех записей из таблицы БД
-        $bookings = DB::table('bookings')->get();
+        // $bookings = DB::table('bookings')->get();
+
+        // получение всех записей из БД с пагинацией
+        $bookings = Booking::paginate(1);
 
         // передача переменной во вью не с помощью массива, а с помощью with()
         return view('bookings.index')
@@ -39,13 +42,15 @@ class BookingController extends Controller
         // подправил временный баг с переходом на /bookings/create: 
         // объект $booking вшит во вью fields.blade.php 
         // и вью без $booking не работает
-        $booking = new Booking;
+        $booking = new Booking();
 
         return view('bookings.create')
             ->with('users', $users)
             ->with('rooms', $rooms)
             
             ->with('booking', $booking);
+            // можно так, без предварительной переменной $booking:
+            //->with('booking', (new Booking()) );
     }
 
     /**
