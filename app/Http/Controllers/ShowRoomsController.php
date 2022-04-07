@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,14 +20,19 @@ class ShowRoomsController extends Controller
         // вывод на экран простейшей строки
         // return response('A listing of rooms', 200);
 
-        // вывод на экран всех комнат из БД в формате JSON
-        $rooms = DB::table('rooms')->get();
+        // Работа без модели через DB
+        // $rooms = DB::table('rooms')->get();
+
+        // Работа с пустой моделью Room (равнозначна работе с DB)
+        $rooms = Room::get();
+
         //  если в запросе указан id (он не null)
         if ($request->query('id') !== null) {
             // то перезаписываем $rooms только теми, у которых room_type_id	== id из запроса
             $rooms = $rooms->where('room_type_id', $request->query('id'));
         }
 
+        // вывод на экран всех комнат из БД в формате JSON
         // вывод на экран, минуя вью
         //return response()->json($rooms);
 
