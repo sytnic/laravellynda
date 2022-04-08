@@ -149,6 +149,9 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
+        /*
+        // Две строчки ниже вместо этого
+
         DB::table('bookings')
         ->where('id', $booking->id)
         ->update([
@@ -161,6 +164,11 @@ class BookingController extends Controller
             'is_paid' => $request->input('is_paid', false),
             'notes' => $request->input('notes'),
         ]);
+        */
+
+        $booking->fill($request->input());
+        $booking->save();
+
         // Вставка значений в таблицу bookings_users 
         DB::table('bookings_users')
         ->where('booking_id', $booking->id)        
@@ -183,7 +191,12 @@ class BookingController extends Controller
     public function destroy(Booking $booking)
     {
         DB::table('bookings_users')->where('booking_id', $booking->id)->delete();
-        DB::table('bookings')->where('id', $booking->id)->delete();
-        return redirect()->action('BookingController@index');
+       
+       // Вместо этой строчки будет задействована модель Booking
+       // одной строчкой ниже
+       // DB::table('bookings')->where('id', $booking->id)->delete();
+       $booking->delete();
+       
+       return redirect()->action('BookingController@index');
     }
 }
