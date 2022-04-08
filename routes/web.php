@@ -22,7 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // работает по адресу /test
 Route::get('/test', function() {return "Goodbye";});
 
-Route::get('/rooms', 'ShowRoomsController');
+// ? означает необязательный параметр
+Route::get('/rooms/{roomType?}', 'ShowRoomsController');
 
 //Равнозначно - Route::resource('bookings', 'BookingController'),
 // но во избежание ошибок

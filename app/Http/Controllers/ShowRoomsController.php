@@ -15,8 +15,9 @@ class ShowRoomsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, $roomType = null)
     {
+        /*
         // вывод на экран простейшей строки
         // return response('A listing of rooms', 200);
 
@@ -35,6 +36,15 @@ class ShowRoomsController extends Controller
         // вывод на экран всех комнат из БД в формате JSON
         // вывод на экран, минуя вью
         //return response()->json($rooms);
+
+        */
+        
+        if (isset($roomType)) {
+            $rooms = Room::where('room_type_id', "!=", $roomType)->get();
+        } else {
+            $rooms = Room::get();
+        }
+
 
         // вывод на экран через вью
         return view('rooms.index', ['rooms' => $rooms]);
