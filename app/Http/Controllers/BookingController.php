@@ -18,6 +18,9 @@ class BookingController extends Controller
         // 
         // \DB::table('bookings')->get()->dd();
 
+        // Получение всех записей, включая удалённые при SoftDeletes
+        // Booking::withTrashed()->get()->dd();
+
         // получение всех записей из таблицы БД
         // $bookings = DB::table('bookings')->get();
 

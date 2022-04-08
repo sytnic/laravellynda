@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking extends Model
 {
+    use SoftDeletes;
     // поля, которые мы разрешим заполнять
     protected $fillable = [
         'room_id',
