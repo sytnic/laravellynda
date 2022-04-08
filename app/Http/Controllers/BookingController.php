@@ -69,7 +69,9 @@ class BookingController extends Controller
 
         // Здесь ловятся значения из формы.
         // Вставка значений в таблицу bookings 
-        // и получение идентификатора.       
+        // и получение идентификатора. 
+        // Вместо этого блока кода можно написать одну срочку ниже.
+        /*
         $id = DB::table('bookings')->insertGetId([
             'room_id' => $request->input('room_id'),
             'start' => $request->input('start'),
@@ -80,9 +82,13 @@ class BookingController extends Controller
             'is_paid' => $request->input('is_paid', false),
             'notes' => $request->input('notes'),
         ]);
+        */
+
+        $booking = Booking::create($request->input());
+
         // Вставка значений в таблицу bookings_users 
         DB::table('bookings_users')->insert([
-            'booking_id' => $id,
+            'booking_id' => $booking->id,
             'user_id' => $request->input('user_id'),
         ]);
 
