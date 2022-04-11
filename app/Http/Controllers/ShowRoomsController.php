@@ -39,12 +39,17 @@ class ShowRoomsController extends Controller
 
         */
         
+        /* Этот блок заменён на обращение к модели Room ниже
         if (isset($roomType)) {
             $rooms = Room::where('room_type_id', "!=", $roomType)->get();
         } else {
             $rooms = Room::get();
         }
+        */
 
+        $rooms = Room::byType($roomType)->get();
+        // или возможная расширенная вариация
+        // $rooms = Room::byType($roomType)->withTrashed()->where()->get();
 
         // вывод на экран через вью
         return view('rooms.index', ['rooms' => $rooms]);
