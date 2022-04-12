@@ -17,4 +17,11 @@ class Room extends Model
     	}
     	return $query;
     }
+
+    public function roomType() 
+    {
+        // return $this->belongTo('App\RoomType');
+        // return $this->belongTo('App\RoomType', 'room_type_id', 'id')->where('active', true);
+        return $this->belongTo('App\RoomType', 'room_type_id', 'id');
+    }
 }
