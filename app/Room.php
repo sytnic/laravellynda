@@ -22,6 +22,6 @@ class Room extends Model
     {
         // return $this->belongTo('App\RoomType');
         // return $this->belongTo('App\RoomType', 'room_type_id', 'id')->where('active', true);
-        return $this->belongTo('App\RoomType', 'room_type_id', 'id');
+         return $this->belongsTo('App\RoomType', 'room_type_id', 'id');
     }
 }

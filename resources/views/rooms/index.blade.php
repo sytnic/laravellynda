@@ -16,7 +16,10 @@
 		@foreach($rooms as $room)  {{-- переменная $rooms из ShowRoomsController --}}
 			<tr>
 				<td>{{ $room->number }}</td>
-				<td>{{ $room->room_type_id }}</td>
+			{{-- обращение к полю room_type_id текущей таблицы room без отношений Eloquent --}}
+			{{--	<td>{{ $room->room_type_id }}</td>  --}} 
+			{{-- обращение к полю name другой таблицы room_types на основе отношений Eloquent --}}
+			     <td>{{ $room->roomType->name }}</td> 
 			</tr>
 		@endforeach
 	</tbody>
