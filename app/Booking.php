@@ -17,4 +17,17 @@ class Booking extends Model
         'is_paid',
         'notes',
     ];
+
+    // отношение booking к room
+    public function room()
+    {
+        return $this->belongsTo('App\Room');
+    }
+
+    // есть таблица 'bookings_users' с внешними ключами 'booking_id' и 'user_id'
+    // тут явно указываются не по умолчанию - связующая таблица и внешние ключи
+    public function users()
+    {
+        return $this->belongsToMany('App\User','bookings_users','booking_id','user_id')->withTimestamps();
+    }
 }

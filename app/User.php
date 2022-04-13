@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // есть таблица 'bookings_users' с внешними ключами 'booking_id' и 'user_id'
+    // тут явно указываются не по умолчанию - связующая таблица и внешние ключи
+    public function bookings()
+    {
+        return $this->belongsToMany('App\Booking','bookings_users','user_id','booking_id')->withTimestamps();
+    }
 }
