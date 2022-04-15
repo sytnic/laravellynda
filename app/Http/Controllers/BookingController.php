@@ -33,8 +33,8 @@ class BookingController extends Controller
         // with(['room.roomType', 'users'])
         // with(['room.roomType', 'users:name'])
         
-       // $bookings = Booking::with(['room.roomType', 'users:name'])->paginate(1);
-        $bookings = Booking::paginate(1);
+        $bookings = Booking::with(['room.roomType', 'users:name'])->paginate(1);
+       // $bookings = Booking::paginate(1);
 
         // передача переменной во вью не с помощью массива, а с помощью with()
         return view('bookings.index')
