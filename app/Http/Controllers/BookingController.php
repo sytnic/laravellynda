@@ -24,7 +24,16 @@ class BookingController extends Controller
         // получение всех записей из таблицы БД
         // $bookings = DB::table('bookings')->get();
 
-        // получение всех записей из БД с пагинацией
+        // получение всех записей из БД с пагинацией;        
+        // with('room') просит дозагрузить все связанные данные таблицы rooms,
+        // используется для жадной загрузки (запросить всё, что можно)
+        // Варианты для жадной загрузки (Eager_loading):
+        // with('room')
+        // with('room.roomType')
+        // with(['room.roomType', 'users'])
+        // with(['room.roomType', 'users:name'])
+        
+       // $bookings = Booking::with(['room.roomType', 'users:name'])->paginate(1);
         $bookings = Booking::paginate(1);
 
         // передача переменной во вью не с помощью массива, а с помощью with()
