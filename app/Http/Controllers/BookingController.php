@@ -99,10 +99,18 @@ class BookingController extends Controller
         $booking = Booking::create($request->input());
 
         // Вставка значений в таблицу bookings_users 
+
+        // Заменим эти строчки на следующие, чтобы использовать отношения,
+        // получаемые от разных таблиц
+        /*
         DB::table('bookings_users')->insert([
             'booking_id' => $booking->id,
             'user_id' => $request->input('user_id'),
         ]);
+        */
+        $booking->users()->attach($request->input('user_id'));
+        //$user = $booking->users()->create(['name' => 'test']);
+
 
         // Редирект
         return redirect()->action('BookingController@index');
@@ -181,6 +189,9 @@ class BookingController extends Controller
         $booking->fill($request->input());
         $booking->save();
 
+        // Заменим эти строчки на следующие, чтобы использовать отношения,
+        // получаемые от разных таблиц.
+        /*
         // Вставка значений в таблицу bookings_users 
         DB::table('bookings_users')
         ->where('booking_id', $booking->id)        
@@ -189,7 +200,9 @@ class BookingController extends Controller
             // 'booking_id' => $booking->id,
             'user_id' => $request->input('user_id'),
         ]);
-
+        */
+        $booking->users()->sync([$request->input('user_id')]);
+        
         // Редирект
         return redirect()->action('BookingController@index');
     }
@@ -202,8 +215,14 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
+        // Заменим эту строчку на следующую, чтобы использовать отношения,
+        // получаемые от разных таблиц.
+        /*
         DB::table('bookings_users')->where('booking_id', $booking->id)->delete();
-       
+       */
+       $booking->users()->detach();
+
+
        // Вместо этой строчки будет задействована модель Booking
        // одной строчкой ниже
        // DB::table('bookings')->where('id', $booking->id)->delete();
