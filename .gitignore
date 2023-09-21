@@ -12,7 +12,12 @@ npm-debug.log
 yarn-error.log
 
 /.vagrant
-/storage
-/bootstrap/cache
+
+# /storage
+# /bootstrap/cache
+# эти две папки не нужно отключать  
+# 1 - это вызовет проблемы при клонировании  
+# 2 - в них уже вложены .gitignore, 
+# заботящиеся о правильном отсеивании файлов при коммитах  
 
 /dbfiles
