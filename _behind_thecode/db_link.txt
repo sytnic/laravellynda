@@ -1,0 +1,4 @@
+Постоянная ссылка на Схему базы данных
+
+http://localhost:6080/?server=db&username=root&db=db_laravellynda&schema=bookings%3A14.8726x22.6358_bookings_users%3A5.8837x4.1676_discounts%3A1.471x20.6756_migrations%3A1.7979x29.7468_password_resets%3A1.7162x39.0631_rates%3A36.6095x20.6746_rooms%3A20.0208x0.3269_room_types%3A28.6829x12.5028_users%3A32.5236x-1.2258
+
